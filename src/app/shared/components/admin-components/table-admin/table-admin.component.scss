@@ -1,0 +1,49 @@
+:host {
+  .content-table {
+    overflow: auto;
+
+    table {
+      width: 100%;
+      margin-top: 30px;
+
+      tbody {
+        mat-row {
+          justify-content: space-between;
+        }
+      }
+
+      .mat-column-username {
+        flex: 0 0 8%;
+      }
+
+      .mat-column-email,
+      .mat-column-description {
+        flex: 0 0 25%;
+      }
+
+      .mat-column-actions {
+        flex: 0 0 20%;
+      }
+
+      .mat-column-brand,
+      .mat-column-id,
+      .mat-column-country,
+      .mat-column-phone,
+      .mat-column-discordName,
+      .mat-column-name,
+      .mat-column-lastName,
+      .mat-column-status,
+      .mat-column-roleId,
+      .mat-column-createdAt,
+      .mat-column-updatedAt,
+      .mat-column-deletedAt,
+      .mat-column-richDescription,
+      .mat-column-price,
+      .mat-column-countInStock,
+      .mat-column-raiting,
+      .mat-column-isFeatured {
+        flex: 0 0 15%;
+      }
+    }
+  }
+}

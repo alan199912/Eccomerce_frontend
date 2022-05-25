@@ -1,0 +1,79 @@
+:host {
+  footer {
+    background: #000000;
+
+    .item-content {
+      display: flex;
+      cursor: pointer;
+      gap: 15px;
+
+      @media (max-width: 500px) {
+        justify-content: center;
+      }
+
+      > span {
+        color: #ffffff;
+      }
+
+      .icon-redirect {
+        width: 17.3px;
+        height: 17.3px;
+      }
+    }
+
+    .title {
+      font-size: 24px;
+      color: #ffffff;
+    }
+
+    .contact-content {
+      > a {
+        font-size: 24px;
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      .separator {
+        display: flex;
+        justify-content: flex-end;
+
+        @media (max-width: 500px) {
+          display: none;
+        }
+
+        > hr {
+          border: 1px solid #ffffff;
+          opacity: 1;
+          width: 120px;
+        }
+      }
+    }
+
+    .separator-h {
+      border: 1px solid #ffffff;
+      opacity: 1;
+      width: 120px;
+      transform: rotate(90deg);
+      position: relative;
+      top: 80px;
+
+      @media (max-width: 500px) {
+        transform: rotate(180deg);
+        width: 80%;
+        top: 15px;
+        left: 10%;
+      }
+    }
+
+    .social-red-content {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .icon {
+      width: 37.5px;
+      height: 37.5px;
+    }
+  }
+}

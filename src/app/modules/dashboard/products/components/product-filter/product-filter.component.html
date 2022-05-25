@@ -1,0 +1,33 @@
+<div class="" id="sidebar-menu-1">
+  <ul class="c-sidebar-menu">
+    <li class="c-dropdown" [ngClass]="!toggler ? 'c-open' : ''">
+      <a (click)="toggler = !toggler" class="c-toggler">Categorias<span class="c-arrow"></span></a>
+      <ul class="c-dropdown-menu">
+        <li routerLinkActive="c-active" *ngFor="let category of categories">
+          <a [routerLink]="['/dashboard/products/category/' + category.id + '/1']">{{category.name}}</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <div class="c-margin-t-20"></div>
+  <div class="c-shop-result-filter-1 clearfix form-inline ">
+    <div class="c-margin-t-20"></div>
+    <div class="content-filter">
+      <label class="control-label c-font-16">Ordenar por :</label>
+      <select class="form-control c-square c-theme c-input" (change)="filterSort($event.target)">
+        <option value="all" selected>
+          Todos
+        </option>
+        <option value="featured">
+          Más relevantes
+        </option>
+        <option value="ASC">
+          Menor precio
+        </option>
+        <option value="DESC">
+          Mayor precio
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

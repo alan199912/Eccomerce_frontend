@@ -1,0 +1,13 @@
+:host {
+  .content-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 25px;
+
+    .btn-add {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}

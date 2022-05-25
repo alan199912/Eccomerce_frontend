@@ -1,0 +1,22 @@
+@keyframes carousel {
+  0% {
+    transform: translateX(300px);
+    opacity: 0.3;
+  }
+  10% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  30% {
+    transform: translateX(-400px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-400px);
+    opacity: 0;
+  }
+}

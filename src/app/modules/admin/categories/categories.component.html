@@ -1,0 +1,15 @@
+<app-return></app-return>
+
+<app-content-admin *ngIf="categories" title="Categorias" link="/admin/categories/create">
+  <app-table-admin
+    *ngIf="!isLoading; else loadingContent"
+    [displayedColumns]="columns"
+    [data]="categories"
+    link="/admin/categories/update"
+    (EmmitIdItemToDelete)="deleteCategory($event)"
+    (EmmitIdItemToRestore)="restoreCategory($event)"
+  >
+  </app-table-admin>
+
+  <ng-template #loadingContent>Cargando...</ng-template>
+</app-content-admin>

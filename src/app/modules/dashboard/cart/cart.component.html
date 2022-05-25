@@ -1,0 +1,142 @@
+<div class="c-layout-page">
+  <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
+  <div
+    class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both"
+  >
+    <div class="container">
+      <div class="c-page-title c-pull-left">
+        <h3 class="c-font-uppercase c-font-sbold">Tu Carrito</h3>
+        <h4 class="">Page Sub Title Goes Here</h4>
+      </div>
+    </div>
+  </div>
+  <!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
+  <!-- BEGIN: PAGE CONTENT -->
+  <div class="c-content-box c-size-lg" *ngIf="products.length > 0; else noProducts">
+    <div class="container">
+      <div class="c-shop-cart-page-1">
+        <div class="row c-cart-table-title">
+          <div class="col-md-2 c-cart-image">
+            <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Imagen</h3>
+          </div>
+          <div class="col-md-2 c-cart-desc">
+            <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Nombre</h3>
+          </div>
+          <div class="col-md-2 c-cart-ref">
+            <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Codigo</h3>
+          </div>
+          <div class="col-md-2 c-cart-qty">
+            <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Cantidad</h3>
+          </div>
+          <div class="col-md-2 c-cart-price">
+            <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Unidad de precio</h3>
+          </div>
+          <div class="col-md-1 c-cart-total">
+            <h3 class="c-font-uppercase c-font-bold c-font-16 c-font-grey-2">Total</h3>
+          </div>
+          <div class="col-md-1 c-cart-remove"></div>
+        </div>
+        <!-- BEGIN: SHOPPING CART ITEM ROW -->
+        <div
+          class="row c-cart-table-row"
+          *ngFor="let product of products; let index = index; trackBy: trackByIndex"
+        >
+          <h2
+            class="c-font-uppercase c-font-bold c-theme-bg c-font-white c-cart-item-title c-cart-item-first"
+          >
+            Producto {{ index + 1 }}
+          </h2>
+          <div class="col-md-2 col-sm-3 col-xs-5 c-cart-image">
+            <img [src]="product.MainProductImage.file" />
+          </div>
+          <div class="col-md-2 col-sm-3 col-xs-5 c-cart-desc">
+            <h3>
+              <a
+                [routerLink]="['/dashboard/products/product-detail/', product.id]"
+                class="c-font-bold c-theme-link c-font-22 c-font-dark"
+                >{{ product.name }}</a
+              >
+            </h3>
+          </div>
+          <div class="col-md-2 col-sm-3 col-xs-6 c-cart-ref">
+            <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Codigo</p>
+            <p>{{ product.code }}</p>
+          </div>
+          <div class="col-md-2 col-sm-3 col-xs-6 c-cart-qty">
+            <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Cantidad</p>
+            <div class="c-input-group c-spinner">
+              <input
+                type="number"
+                class="form-control c-item-1"
+                (change)="productQuantity($event.target, product)"
+                [value]="product.quantity"
+                min="1"
+                pattern="^[0-9]+"
+              />
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-3 col-xs-6 c-cart-price">
+            <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Unidad de precio</p>
+            <p class="c-cart-price c-font-bold">{{ product.price | currency }}</p>
+          </div>
+          <div class="col-md-1 col-sm-3 col-xs-6 c-cart-total">
+            <p class="c-cart-sub-title c-theme-font c-font-uppercase c-font-bold">Total</p>
+            <p class="c-cart-price c-font-bold">
+              {{ quantity[product.id] ?? product.price | currency }}
+            </p>
+          </div>
+          <div class="col-md-1 col-sm-12 c-cart-remove">
+            <a (click)="removeItem(product.id)" class="c-theme-link c-cart-remove-desktop pointer">×</a>
+            <a
+              (click)="removeItem(product.id)"
+              class="c-cart-remove-mobile btn c-btn c-btn-md c-btn-square c-btn-red c-btn-border-1x c-font-uppercase"
+              >Descartar producto</a
+            >
+          </div>
+        </div>
+        <!-- END: SUBTOTAL ITEM ROW -->
+        <!-- BEGIN: SUBTOTAL ITEM ROW -->
+        <div class="row">
+          <div class="c-cart-subtotal-row">
+            <div class="col-md-2 col-md-offset-9 col-sm-6 col-xs-6 c-cart-subtotal-border">
+              <h3 class="c-font-uppercase c-font-bold c-right c-font-16 c-font-grey-2">Total</h3>
+            </div>
+            <div class="col-md-1 col-sm-6 col-xs-6 c-cart-subtotal-border">
+              <h3 class="c-font-bold c-font-16">{{ totalPrice | currency }}</h3>
+            </div>
+          </div>
+        </div>
+        <!-- END: SUBTOTAL ITEM ROW -->
+        <div class="c-cart-buttons">
+          <a
+            [routerLink]="['/dashboard/products/page/1']"
+            class="btn c-btn btn-lg c-btn-red c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-l"
+            >Continue comprando</a
+          >
+          <button
+            (click)="orderPayment()"
+            class="btn c-btn btn-lg c-theme-btn c-btn-square c-font-white c-font-bold c-font-uppercase c-cart-float-r"
+          >
+            Pagar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noProducts>
+    <div class="c-content-box c-size-lg">
+      <div class="container">
+        <div class="c-shop-cart-page-1 c-center">
+          <i class="fa fa-frown-o c-font-dark c-font-50 c-font-thin"></i>
+          <h2 class="c-font-thin c-center">Tu carrito esta vacio</h2>
+          <a
+            [routerLink]="['/dashboard/products/page/1']"
+            class="btn c-btn btn-lg c-btn-dark c-btn-square c-font-white c-font-bold c-font-uppercase"
+            >Continua Comprando</a
+          >
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

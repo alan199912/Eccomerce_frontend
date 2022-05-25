@@ -1,0 +1,15 @@
+<app-return></app-return>
+
+<app-content-admin title="Roles" link="/admin/roles/create">
+  <app-table-admin
+    *ngIf="!isLoading; else loadingContent"
+    [displayedColumns]="columns"
+    [data]="roles"
+    link="/admin/roles/update"
+    (EmmitIdItemToDelete)="deleteRole($event)"
+    (EmmitIdItemToRestore)="restoreRole($event)"
+  >
+  </app-table-admin>
+
+  <ng-template #loadingContent>Cargando...</ng-template>
+</app-content-admin>

@@ -1,0 +1,27 @@
+<ul class="c-content-pagination c-square c-theme pull-right" *ngIf="!pageId; else hasPageId">
+  <li *ngIf="paginationFromUrl !== 1" class="c-prev">
+    <a [routerLink]="['/dashboard/products/' + typePage, paginationFromUrl - 1]"><i class="fa fa-angle-left"></i></a>
+  </li>
+  <li routerLinkActive="c-active" *ngFor="let page of pagination"><a
+      [routerLink]="['/dashboard/products/' + typePage, page]">{{ page }}</a></li>
+  <li class="c-next">
+    <a *ngIf="paginationFromUrl !== pagination.length"
+      [routerLink]="['/dashboard/products/' + typePage, paginationFromUrl + 1]"><i class="fa fa-angle-right"></i></a>
+  </li>
+</ul>
+
+<ng-template #hasPageId>
+  <ul class="c-content-pagination c-square c-theme pull-right">
+    <li *ngIf="paginationFromUrl !== 1" class="c-prev">
+      <a [routerLink]="['/dashboard/products/' + typePage + '/' + pageId, paginationFromUrl - 1]"><i
+          class="fa fa-angle-left"></i></a>
+    </li>
+    <li routerLinkActive="c-active" *ngFor="let page of pagination"><a
+        [routerLink]="['/dashboard/products/' + typePage + '/' + pageId, page]">{{ page }}</a></li>
+    <li class="c-next">
+      <a *ngIf="paginationFromUrl !== pagination.length"
+        [routerLink]="['/dashboard/products/' + typePage + '/' + pageId, paginationFromUrl + 1]"><i
+          class="fa fa-angle-right"></i></a>
+    </li>
+  </ul>
+</ng-template>

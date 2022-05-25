@@ -1,0 +1,62 @@
+<div class="row container content-auth">
+  <div class="col-md-6">
+    <div class="modal-body">
+      <h3 class="c-font-24 c-font-sbold">Crea una cuenta</h3>
+      <p>Por favor, complete el siguiente formulario para crear una cuenta con nosotros</p>
+      <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
+        <div class="form-group">
+          <label for="signup-username" class="hide">Username</label>
+          <input type="text" formControlName="username" class="form-control input-lg c-square" id="signup-username"
+            placeholder="Username" />
+        </div>
+        <div class="form-group">
+          <label for="signup-email" class="hide">Email</label>
+          <input type="email" formControlName="email" class="form-control input-lg c-square" id="signup-email"
+            placeholder="Email" />
+        </div>
+        <div class="form-group">
+          <label for="signup-fullname" class="hide">Nombre</label>
+          <input type="text" formControlName="name" class="form-control input-lg c-square" id="signup-name"
+            placeholder="Nombre" />
+        </div>
+        <div class="form-group">
+          <label for="signup-fullname" class="hide">Apellido</label>
+          <input type="text" formControlName="lastName" class="form-control input-lg c-square" id="signup-fullname"
+            placeholder="Apellido" />
+        </div>
+        <div class="form-group">
+          <label for="signup-country" class="hide">País</label>
+          <select class="form-control input-lg c-square" formControlName="country" id="signup-country"
+            (change)="changeCountry($event)">
+            <option selected disabled value="0">Seleccione un país</option>
+            <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="signup-phone" class="hide">Telefono</label>
+          <input type="text" formControlName="phone" class="form-control input-lg c-square" id="signup-phone"
+            placeholder="Telefono" />
+        </div>
+        <div class="form-group">
+          <label for="signup-discord" class="hide">Usuario de discord</label>
+          <input type="text" formControlName="discordName" class="form-control input-lg c-square" id="signup-discord"
+            placeholder="Usuario de discord" />
+        </div>
+        <div class="form-group">
+          <label for="login-password" class="hide">Password</label>
+          <input type="password" formControlName="password" class="form-control input-lg c-square" id="login-password"
+            placeholder="Password" />
+        </div>
+        <div class="form-group content-register-button">
+          <button type="submit" class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">
+            Registrarse
+          </button>
+          <a class="c-btn-forgot" [routerLink]="['/login']">Volver </a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-6 disabled-mobile items">
+    <img class="img-banner" src="/assets/images/carousel/carousel-4.jpg" alt="" />
+  </div>
+</div>

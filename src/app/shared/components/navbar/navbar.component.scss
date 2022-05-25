@@ -1,0 +1,21 @@
+:host {
+  .logo {
+    width: 88px;
+
+    @media (max-width: 992px) {
+      width: 50px;
+    }
+  }
+
+  .glyphicon {
+    color: #e6e6e6;
+  }
+
+  .disabled-mobile {
+    display: flex;
+
+    @media (max-width: 992px) {
+      display: none !important;
+    }
+  }
+}

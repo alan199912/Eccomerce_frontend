@@ -1,0 +1,52 @@
+<div class="c-cart-menu c-layout-cart-menu-shown" *ngIf="products.length > 0; else noProducts">
+  <div class="c-cart-menu-title">
+    <p class="c-cart-menu-float-l c-font-sbold">{{ products.length }} Producto(s)</p>
+    <p class="c-cart-menu-float-r c-theme-font c-font-sbold">
+      {{ cartService.getTotalPrice | currency }}
+    </p>
+  </div>
+  <ul class="c-cart-menu-items">
+    <li *ngFor="let product of products">
+      <div class="c-cart-menu-close">
+        <a (click)="removeItem(product.id); $event.stopPropagation()" class="c-theme-link pointer">×</a>
+      </div>
+      <img [src]="product.MainProductImage.file" />
+      <div class="c-cart-menu-content">
+        <p>
+          {{ product.quantity }} x
+          <span *ngIf="product.quantity > 1; else normalProduct" class="c-item-price c-theme-font">{{
+            product.price * product.quantity | currency
+          }}</span>
+        </p>
+        <ng-template #normalProduct>
+          <span class="c-item-price c-theme-font">{{ product.price | currency }}</span>
+        </ng-template>
+
+        <a
+          [routerLink]="['/dashboard/products/product-detail/', product.id]"
+          class="c-item-name c-font-sbold"
+          >{{ product.name }}</a
+        >
+      </div>
+    </li>
+  </ul>
+  <div class="c-cart-menu-footer">
+    <a
+      [routerLink]="['/dashboard/cart']"
+      class="btn btn-md c-btn c-btn-square c-btn-grey-3 c-font-white c-font-bold c-center c-font-uppercase"
+      >Ver carrito</a
+    >
+  </div>
+</div>
+
+<ng-template #noProducts>
+  <div class="c-shop-cart-page-1 c-center c-padding-10">
+    <i class="fa fa-frown-o c-font-dark c-font-50 c-font-thin"></i>
+    <h2 class="c-font-thin c-center">Tu carrito esta vacio</h2>
+    <a
+      [routerLink]="['/dashboard/products/page/1']"
+      class="btn c-btn btn-lg c-btn-dark c-btn-square c-font-white c-font-bold c-font-uppercase"
+      >Continua Comprando</a
+    >
+  </div>
+</ng-template>

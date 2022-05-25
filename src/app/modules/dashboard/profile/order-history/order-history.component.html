@@ -1,0 +1,42 @@
+<div class="c-layout-sidebar-content">
+  <div class="c-content-title-1">
+    <h3 class="c-font-uppercase c-font-bold">Historial de pedidos</h3>
+    <div class="c-line-left"></div>
+  </div>
+  <div class="row c-margin-b-40" *ngFor="let order of orders">
+    <div class="c-content-product-2 c-bg-white">
+      <div class="col-md-4">
+        <div class="c-content-overlay">
+          <div class="c-bg-img-center c-overlay-object" data-height="height">
+            <img
+              style="height: 230px; width: 230px; object-fit: contain"
+              [src]="order.OrderItems[0].Product.MainProductImage.file"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="c-info-list">
+          <h3 class="c-title c-font-bold c-font-22 c-font-dark">
+            <a
+              class="c-theme-link"
+              [routerLink]="['/dashboard/products/product-detail/', item.Product.id]"
+              *ngFor="let item of order.OrderItems"
+            >
+              {{ item.Product.name }}<br />
+            </a>
+          </h3>
+          <p class="c-order-date c-font-14 c-font-thin c-theme-font">
+            {{ order.updatedAt | date: 'dd/MM/yyyy' }}
+          </p>
+          <p class="c-desc c-font-16 c-font-thin" *ngFor="let item of order.OrderItems">
+            {{ item.Product.description }}
+          </p>
+          <p class="c-price c-font-26 c-font-thin">{{ order?.totalPrice | currency: 'USD' }}</p>
+          <p class="c-payment-type c-font-14 c-font-bold">via Paypal</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

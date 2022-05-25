@@ -1,0 +1,13 @@
+:host {
+  .container-return {
+    display: flex;
+    justify-content: flex-start;
+
+    .return {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 20px;
+    }
+  }
+}

@@ -1,0 +1,93 @@
+<app-return></app-return>
+
+<app-content-admin title="Actualizar Producto" [link]="null">
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label for="name" class="col-md-4 control-label">Nombre:</label>
+      <div class="col-md-6">
+        <input type="text" class="form-control c-square c-theme" id="name" placeholder="Nombre" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description" class="col-md-4 control-label">Descripción: </label>
+      <div class="col-md-6">
+        <input
+          type="text"
+          class="form-control c-square c-theme"
+          id="description"
+          placeholder="Descripcion"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="richDescription" class="col-md-4 control-label">Breve Descripción:</label>
+      <div class="col-md-6">
+        <input
+          type="text"
+          class="form-control c-square c-theme"
+          id="richDescription"
+          placeholder="Breve descripcion"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="image" class="col-md-4 control-label">Imagen:</label>
+      <div class="col-md-6">
+        <input type="file" class="form-control c-square c-theme" id="image" placeholder="Imagen" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="images" class="col-md-4 control-label">Imagenes:</label>
+      <div class="col-md-6">
+        <input type="file" class="form-control c-square c-theme" id="images" placeholder="Imagenes" />
+        <input type="file" class="form-control c-square c-theme" id="images" placeholder="Imagenes" />
+        <input type="file" class="form-control c-square c-theme" id="images" placeholder="Imagenes" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="brand" class="col-md-4 control-label">Marca:</label>
+      <div class="col-md-6">
+        <input type="text" class="form-control c-square c-theme" id="brand" placeholder="Marca" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="price" class="col-md-4 control-label">Precio:</label>
+      <div class="col-md-6">
+        <input type="number" class="form-control c-square c-theme" id="price" placeholder="Precio" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="puntaje" class="col-md-4 control-label">Puntaje:</label>
+      <div class="col-md-6">
+        <input type="text" class="form-control c-square c-theme" id="puntaje" placeholder="Puntaje" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="featured" class="col-md-4 control-label">Destacado:</label>
+      <div class="col-md-6">
+        <select name="featured" id="featured">
+          <option selected disabled>Seleccione una opcion</option>
+          <option>Sí</option>
+          <option>No</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="category" class="col-md-4 control-label">Categoria:</label>
+      <div class="col-md-6">
+        <select name="featured" id="category">
+          <option selected disabled>Seleccione una opcion</option>
+          <option>Categoria 1</option>
+          <option>Categoria 2</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group c-margin-t-40">
+      <div class="col-sm-offset-4 col-md-8">
+        <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">
+          Agregar
+        </button>
+      </div>
+    </div>
+  </form>
+</app-content-admin>

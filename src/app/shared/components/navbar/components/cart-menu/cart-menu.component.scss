@@ -1,0 +1,80 @@
+::ng-deep .mat-dialog-container {
+  padding: 0px;
+}
+
+::ng-deep .mat-menu-panel {
+  max-width: 390px;
+
+  @media (max-width: 599px) {
+    max-width: 100%;
+  }
+}
+
+::ng-deep .cdk-overlay-pane {
+  @media (max-width: 599px) {
+    position: relative;
+    display: block;
+  }
+}
+
+:host {
+  .c-cart-menu-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px 0;
+  }
+
+  .c-cart-menu-items {
+    padding: 0;
+    max-height: 500px;
+    overflow-y: auto;
+    width: 100%;
+
+    > li {
+      border-top: 1px solid #f3f3f3;
+      padding: 20px;
+      width: 100%;
+      list-style: none;
+      overflow: auto;
+
+      > img {
+        width: 80px;
+        height: 80px;
+        float: left;
+        margin-right: 20px;
+      }
+
+      .c-cart-menu-close {
+        float: right;
+        // margin-top: 10px;
+
+        > a {
+          font-size: 28px;
+          font-family: arial;
+          font-weight: 100;
+          line-height: 0px;
+        }
+      }
+
+      .c-cart-menu-content {
+        padding-left: 100px;
+
+        > p {
+          margin: 0 0 10px;
+        }
+
+        .c-item-name .c-font-sbold {
+          line-height: 1em;
+          font-weight: 500 !important;
+          color: #3f444a;
+        }
+      }
+    }
+  }
+
+  .c-cart-menu-footer {
+    border-top: 1px solid #f3f3f3;
+    padding: 20px;
+    text-align: center;
+  }
+}

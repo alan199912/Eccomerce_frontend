@@ -1,0 +1,134 @@
+<app-return></app-return>
+
+<app-content-admin title="Editar Usuario" [link]="null">
+  <form [formGroup]="userForm" (ngSubmit)="updateUser()" class="form-horizontal">
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="signup-username">Username</label>
+      <div class="col-md-6">
+        <input
+          type="text"
+          formControlName="username"
+          class="form-control input-lg c-square"
+          id="signup-username"
+          placeholder="Username"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="signup-email">Email</label>
+      <div class="col-md-6">
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control input-lg c-square"
+          id="signup-email"
+          placeholder="Email"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="signup-fullname">Nombre</label>
+      <div class="col-md-6">
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control input-lg c-square"
+          id="signup-name"
+          placeholder="Nombre"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="signup-fullname">Apellido</label>
+      <div class="col-md-6">
+        <input
+          type="text"
+          formControlName="lastName"
+          class="form-control input-lg c-square"
+          id="signup-fullname"
+          placeholder="Apellido"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="signup-country">País</label>
+      <div class="col-md-6">
+        <select
+          class="form-control input-lg c-square"
+          formControlName="country"
+          id="signup-country"
+          (change)="changeCountry($event)"
+        >
+          <option selected disabled value="0">Seleccione un país</option>
+          <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="signup-phone">Telefono</label>
+      <div class="col-md-6">
+        <input
+          type="text"
+          formControlName="phone"
+          class="form-control input-lg c-square"
+          id="signup-phone"
+          placeholder="Telefono"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="signup-discord">Usuario de discord</label>
+      <div class="col-md-6">
+        <input
+          type="text"
+          formControlName="discordName"
+          class="form-control input-lg c-square"
+          id="signup-discord"
+          placeholder="Usuario de discord"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="login-password">Password</label>
+      <div class="col-md-6">
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control input-lg c-square"
+          id="login-password"
+          placeholder="Password"
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="login-role">Rol</label>
+      <div class="col-md-6">
+        <select class="form-control input-lg c-square" formControlName="role" id="signup-role">
+          <option selected disabled value="0">Seleccione un rol</option>
+          <option *ngFor="let role of roles" [value]="role?.id">{{ role?.name }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="login-status">Estado</label>
+      <div class="col-md-6">
+        <select class="form-control input-lg c-square" formControlName="status" id="signup-status">
+          <option selected disabled>Seleccione un estado</option>
+          <option value="0">No Verificado</option>
+          <option value="1">Verificado</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group c-margin-t-40">
+      <div class="col-sm-offset-4 col-md-8">
+        <button
+          [disabled]="isPreventClickTwice"
+          type="submit"
+          class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold"
+        >
+          Editar
+        </button>
+      </div>
+    </div>
+  </form>
+</app-content-admin>

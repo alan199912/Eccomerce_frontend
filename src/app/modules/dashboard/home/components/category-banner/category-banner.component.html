@@ -1,0 +1,48 @@
+<div class="c-content-box c-size-md">
+  <div class="c-content-tab-5 c-bs-grid-reset-space c-theme">
+    <!-- Nav tabs -->
+    <ul class="nav nav-pills c-nav-tab c-arrow" role="tablist">
+      <li
+        role="presentation"
+        [ngClass]="category.id === activeCategory && 'active'"
+        *ngFor="let category of categories"
+      >
+        <a
+          class="c-font-uppercase"
+          aria-controls="watches"
+          role="tab"
+          data-toggle="tab"
+          (click)="getFeaturedProductByCategoryId(category.id, '4')"
+          >{{ category.name }}</a
+        >
+      </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade in active" id="watches5">
+        <div class="row">
+          <div class="col-md-3 col-sm-6" *ngFor="let product of products">
+            <div class="c-content c-content-overlay">
+              <div class="c-overlay-wrapper c-overlay-padding">
+                <div class="c-overlay-content">
+                  <a
+                    [routerLink]="['/dashboard/products/product-detail/', product.id]"
+                    class="btn btn-md c-btn-grey-1 c-btn-uppercase c-btn-bold c-btn-border-1x c-btn-square"
+                    >Explorar</a
+                  >
+                </div>
+              </div>
+              <div
+                class="c-bg-img-center c-overlay-object"
+                data-height="height"
+                style="height: 270px"
+                [ngStyle]="{ 'background-image': 'url(' + product.MainProductImage.file + ')' }"
+              ></div>
+              <div class="c-overlay-border"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

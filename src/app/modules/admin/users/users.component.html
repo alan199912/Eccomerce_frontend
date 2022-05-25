@@ -1,0 +1,13 @@
+<app-return></app-return>
+
+<app-content-admin *ngIf="users" title="Usuarios" link="/admin/users/create">
+  <app-table-admin
+    *ngIf="!isLoading; else loadingContent"
+    [displayedColumns]="columns"
+    [data]="users"
+    link="/admin/users/update"
+  >
+  </app-table-admin>
+
+  <ng-template #loadingContent>Cargando...</ng-template>
+</app-content-admin>

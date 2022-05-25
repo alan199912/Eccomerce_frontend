@@ -1,0 +1,51 @@
+<div class="mat-elevation-z8 content-table" *ngIf="!isLoading; else loadingContent">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    matSort
+    matSortActive="id"
+    matSortDirection="asc"
+    matSortDisableClear
+  >
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column }} </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row[column] }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions" stickyEnd>
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <a
+          *ngIf="!row.deletedAt"
+          [routerLink]="[link, row.id]"
+          class="btn btn-sm c-btn-blue-2 c-btn-uppercase c-btn-bold"
+        >
+          <i class="glyphicon glyphicon-pencil"></i
+        ></a>
+        <a
+          *ngIf="!row.deletedAt"
+          (click)="removeItem(row.id)"
+          class="btn btn-sm c-btn-red-2 c-btn-uppercase c-btn-bold"
+          ><i class="glyphicon glyphicon-trash"></i
+        ></a>
+        <a
+          *ngIf="row.deletedAt"
+          (click)="restoreItem(row.id)"
+          class="btn btn-sm c-btn-yellow-2 c-btn-uppercase c-btn-bold"
+          ><i class="glyphicon glyphicon-repeat"></i
+        ></a>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: columns"></mat-row>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
+
+<ng-template #loadingContent>Cargando...</ng-template>
