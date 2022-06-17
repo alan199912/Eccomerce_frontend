@@ -37,7 +37,7 @@ export class AuthService {
 
   public restorePassword(password: UserRestorePassword, encodeToken: string): Observable<ResponseAuth> {
     return this.http
-      .put<ResponseAuth>(`${environment.auth.restorePassword}/${encodeToken}`, password)
+      .put<ResponseAuth>(`${environment.auth.restorePassword}/${encodeToken}`, { password })
       .pipe(catchError((error) => throwError(() => error.error.message)));
   }
 
