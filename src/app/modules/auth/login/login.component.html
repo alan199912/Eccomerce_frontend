@@ -1,81 +1,74 @@
-<div *ngIf="!(isLoading$ | async); else loadingContainer" class="row container content-auth">
-  <div class="col-12 col-sm-12 col-md-6 items">
-    <div class="modal-body">
-      <h3 class="c-font-24 c-font-sbold">¡Iniciar sesion!</h3>
-      <p>¡Hagamos hoy un gran día!</p>
-      <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-        <div class="form-group">
-          <label for="login-email" class="hide">Email</label>
-          <input
-            type="email"
-            formControlName="email"
-            class="form-control input-lg c-square"
-            id="login-email"
-            placeholder="Email"
-          />
-        </div>
-        <div class="form-group">
-          <label for="login-password" class="hide">Password</label>
-          <input
-            type="password"
-            formControlName="password"
-            class="form-control input-lg c-square"
-            id="login-password"
-            placeholder="Password"
-          />
-        </div>
-        <div class="form-group">
-          <div class="c-checkbox">
-            <input type="checkbox" id="login-rememberme" class="c-check" />
-            <label for="login-rememberme" class="c-font-thin c-font-17">
-              <span></span>
-              <span class="check"></span>
-              <span class="box"></span>
-              Recuérdame
-            </label>
-          </div>
-        </div>
-        <div class="form-group content-button">
-          <button
-            type="submit"
-            class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login"
-          >
-            Iniciar sesion
-          </button>
-          <a [routerLink]="['/recovery-password']" class="c-btn-forgot disabled-mobile"
-            >¿Olvidaste tu contraseña ?</a
-          >
-        </div>
-      </form>
+<div *ngIf="!(isLoading$ | async); else loadingContainer">
+  <h3 class="c-font-24 c-font-sbold">¡Iniciar sesion!</h3>
+  <p>¡Hagamos hoy un gran día!</p>
+  <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+    <div class="form-group">
+      <label for="login-email" class="hide">Email</label>
+      <input
+        type="email"
+        formControlName="email"
+        class="form-control input-lg c-square"
+        id="login-email"
+        placeholder="Email"
+      />
     </div>
-    <div class="separator">
-      <div class="item-separator"></div>
-      <div class="item">o</div>
-      <div class="item-separator"></div>
+    <div class="form-group">
+      <label for="login-password" class="hide">Password</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control input-lg c-square"
+        id="login-password"
+        placeholder="Password"
+      />
     </div>
-    <div class="modal-footer c-no-border content-button">
-      <a [routerLink]="['/recovery-password']" class="c-btn-forgot disabled-desktop"
-        >¿Olvidaste tu contraseña ?</a
-      >
-      <span class="c-text-account disabled-mobile">¿No tienes una cuenta?</span>
-      <a
-        [routerLink]="['/register']"
-        class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup disabled-mobile"
-        >¡Registrate!</a
-      >
-
-      <div class="content-register">
-        <span class="c-text-account">¿No tienes una cuenta?</span>
-        <a
-          [routerLink]="['/register']"
-          class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup"
-          >¡Registrate!</a
-        >
+    <div class="form-group">
+      <div class="c-checkbox">
+        <input type="checkbox" id="login-rememberme" class="c-check" />
+        <label for="login-rememberme" class="c-font-thin c-font-17">
+          <span></span>
+          <span class="check"></span>
+          <span class="box"></span>
+          Recuérdame
+        </label>
       </div>
     </div>
-  </div>
-  <div class="col-md-6 disabled-mobile items">
-    <img class="img-banner" src="https://source.unsplash.com/4hxEOapTQGU" alt="" />
+    <div class="form-group content-button">
+      <button
+        type="submit"
+        class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login"
+      >
+        Iniciar sesion
+      </button>
+      <a [routerLink]="['/recovery-password']" class="c-btn-forgot disabled-mobile"
+        >¿Olvidaste tu contraseña ?</a
+      >
+    </div>
+  </form>
+</div>
+<div class="separator">
+  <div class="item-separator"></div>
+  <div class="item">o</div>
+  <div class="item-separator"></div>
+</div>
+<div class="modal-footer c-no-border content-button">
+  <a [routerLink]="['/recovery-password']" class="c-btn-forgot disabled-desktop"
+    >¿Olvidaste tu contraseña ?</a
+  >
+  <span class="c-text-account disabled-mobile">¿No tienes una cuenta?</span>
+  <a
+    [routerLink]="['/register']"
+    class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup disabled-mobile"
+    >¡Registrate!</a
+  >
+
+  <div class="content-register">
+    <span class="c-text-account">¿No tienes una cuenta?</span>
+    <a
+      [routerLink]="['/register']"
+      class="btn c-btn-dark-1 btn c-btn-uppercase c-btn-bold c-btn-slim c-btn-border-2x c-btn-square c-btn-signup"
+      >¡Registrate!</a
+    >
   </div>
 </div>
 

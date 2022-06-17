@@ -11,8 +11,9 @@ import { RegisterComponent } from './register/register.component';
 import { RecoveryPasswordComponent } from './recovery-password/recovery-password.component';
 
 import { RestorePasswordComponent } from './restore-password/restore-password.component';
-import { VerifyEmailErrorComponent } from './email/verify-email-error/verify-email-error.component';
-import { VerifyEmailComponent } from './email/verify-email/verify-email.component';
+import { VerifyEmailErrorComponent } from '../email/verify-email-error/verify-email-error.component';
+import { VerifyEmailComponent } from '../email/verify-email/verify-email.component';
+import { AuthComponent } from './auth.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,7 @@ import { VerifyEmailComponent } from './email/verify-email/verify-email.componen
     RegisterComponent,
     RecoveryPasswordComponent,
     RestorePasswordComponent,
-    VerifyEmailErrorComponent,
-    VerifyEmailComponent,
+    AuthComponent,
   ],
   imports: [CommonModule, AuthRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers: [],

@@ -2,13 +2,18 @@ import { AdminGuard } from './core/guard/admin/admin.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guard/auth/auth.guard';
-import { AdminComponent } from './modules/admin/admin.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { AuthComponent } from './modules/auth/auth.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: AuthComponent,
     loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'email',
+    loadChildren: () => import('./modules/email/email.module').then((m) => m.EmailModule),
   },
   {
     path: 'unsubscribe',
