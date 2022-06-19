@@ -3,7 +3,6 @@ import { Role } from './role.models';
 export interface User {
   id: number;
   country: string;
-  discordName: string;
   email: string;
   lastName: string;
   name: string;

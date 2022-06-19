@@ -17,7 +17,6 @@ export abstract class UserForm {
       phone: ['', [Validators.required, noSpacesValidator]],
       name: ['', [Validators.required, noSpacesValidator]],
       lastName: ['', [Validators.required, noSpacesValidator]],
-      discordName: ['', [Validators.required, noSpacesValidator]],
       role: ['', [Validators.required, noSpacesValidator]],
       status: ['', [Validators.required, noSpacesValidator]],
     });

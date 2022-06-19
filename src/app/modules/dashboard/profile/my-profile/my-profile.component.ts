@@ -34,7 +34,6 @@ export class MyProfileComponent implements OnInit {
       phone: ['', [Validators.required]],
       name: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      discordName: ['', [Validators.required]],
     });
   }
 
@@ -53,7 +52,6 @@ export class MyProfileComponent implements OnInit {
         phone: user.phone,
         name: user.name,
         lastName: user.lastName,
-        discordName: user.discordName,
       });
       this.isLoader = false;
     });

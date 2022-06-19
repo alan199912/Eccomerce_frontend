@@ -8,7 +8,6 @@ export interface UserRegisterForm {
   phone: string;
   name: string;
   lastName: string;
-  discordName: string;
 }
 
 export interface UserLogin {

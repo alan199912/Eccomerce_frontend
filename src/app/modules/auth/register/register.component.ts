@@ -33,7 +33,6 @@ export class RegisterComponent {
       phone: ['', [Validators.required]],
       name: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      discordName: ['', [Validators.required]],
     });
   }
 
