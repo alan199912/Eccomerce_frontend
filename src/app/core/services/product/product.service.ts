@@ -94,4 +94,14 @@ export class ProductService {
       })
       .pipe(catchError((error) => throwError(() => error.message)));
   }
+
+  public updateProduct(product: Product, id: string): Observable<ProductResponse> {
+    return this.http
+      .put<ProductResponse>(`${environment.product.updateProduct}/${id}`, product, {
+        headers: {
+          enctype: 'multipart/form-data',
+        },
+      })
+      .pipe(catchError((error) => throwError(() => error.message)));
+  }
 }

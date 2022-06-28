@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { forkJoin, mergeMap } from 'rxjs';
@@ -20,6 +21,8 @@ export class CreateProductComponent extends ProductForm implements OnInit {
   public categories: Category[] = [];
   public formDataImage: FormData;
   public formDataMultipleImages: FormData;
+  public previewImage: string;
+  public previewImages: string[] = [];
 
   constructor(
     protected override fb: FormBuilder,
@@ -28,7 +31,8 @@ export class CreateProductComponent extends ProductForm implements OnInit {
     private readonly router: Router,
     private readonly categoryService: CategoryService,
     private readonly mainImageService: MainImageService,
-    private readonly restImageService: RestImageService
+    private readonly restImageService: RestImageService,
+    private readonly sanitizer: DomSanitizer
   ) {
     super(fb);
   }
@@ -87,20 +91,45 @@ export class CreateProductComponent extends ProductForm implements OnInit {
 
   loadMainImage(event) {
     let fileList: FileList = event.target.files;
+
     if (fileList.length > 0) {
       this.formDataImage = new FormData();
       Array.prototype.forEach.call(fileList, (file) => {
+        this.extractBase64(file).then((image: any) => (this.previewImage = image.base));
         this.formDataImage.append('image', file);
       });
     }
   }
 
   loadImages(event) {
+    this.previewImages = [];
     let fileList: FileList = event.target.files;
     this.formDataMultipleImages = new FormData();
 
     Array.prototype.forEach.call(fileList, (file) => {
+      this.extractBase64(file).then((image: any) => this.previewImages.push(image.base));
       this.formDataMultipleImages.append('images', file);
     });
   }
+
+  private extractBase64 = async ($event: any) =>
+    new Promise((resolve, reject) => {
+      try {
+        const unsafeImg = window.URL.createObjectURL($event);
+        const image = this.sanitizer.bypassSecurityTrustHtml(unsafeImg);
+        const reader = new FileReader();
+        reader.readAsDataURL($event);
+        reader.onload = () => {
+          resolve({
+            base: reader.result,
+          });
+        };
+
+        reader.onerror = (error) => {
+          resolve({
+            base: reader.result,
+          });
+        };
+      } catch (error) {}
+    });
 }

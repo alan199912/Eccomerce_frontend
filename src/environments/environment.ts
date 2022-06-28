@@ -38,11 +38,14 @@ export const environment = {
     getProductsListByCategoryIdPagination:
       'http://localhost:5000/api/v1/products/getProductsListByCategoryIdPagination',
     setProduct: 'http://localhost:5000/api/v1/products/setProduct',
+    updateProduct: 'http://localhost:5000/api/v1/products/updateProduct',
     mainImage: {
       setMainImage: 'http://localhost:5000/api/v1/mainProductsImage/setMainImage',
+      updateMainImage: 'http://localhost:5000/api/v1/mainProductsImage/updateMainImage',
     },
     restImage: {
       setRestImage: 'http://localhost:5000/api/v1/restProductsImage/setRestImage',
+      updateRestImage: 'http://localhost:5000/api/v1/restProductsImage/updateRestImage',
     },
   },
   category: {

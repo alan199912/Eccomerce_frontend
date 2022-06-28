@@ -1,17 +1,24 @@
 <app-return></app-return>
 
 <app-content-admin title="Actualizar Producto" [link]="null">
-  <form class="form-horizontal">
+  <form [formGroup]="productForm" (ngSubmit)="updateProduct()" class="form-horizontal">
     <div class="form-group">
       <label for="name" class="col-md-4 control-label">Nombre:</label>
       <div class="col-md-6">
-        <input type="text" class="form-control c-square c-theme" id="name" placeholder="Nombre" />
+        <input
+          formControlName="name"
+          type="text"
+          class="form-control c-square c-theme"
+          id="name"
+          placeholder="Nombre"
+        />
       </div>
     </div>
     <div class="form-group">
       <label for="description" class="col-md-4 control-label">Descripción: </label>
       <div class="col-md-6">
         <input
+          formControlName="description"
           type="text"
           class="form-control c-square c-theme"
           id="description"
@@ -23,6 +30,7 @@
       <label for="richDescription" class="col-md-4 control-label">Breve Descripción:</label>
       <div class="col-md-6">
         <input
+          formControlName="richDescription"
           type="text"
           class="form-control c-square c-theme"
           id="richDescription"
@@ -33,59 +41,118 @@
     <div class="form-group">
       <label for="image" class="col-md-4 control-label">Imagen:</label>
       <div class="col-md-6">
-        <input type="file" class="form-control c-square c-theme" id="image" placeholder="Imagen" />
+        <!-- formControlName="image" -->
+        <input
+          type="file"
+          class="form-control c-square c-theme"
+          id="image"
+          name="image"
+          placeholder="Imagen"
+          (change)="loadMainImage($event)"
+        />
+        <div
+          *ngIf="previewImage"
+          class="col-md-4 col-sm-6 c-content-media-1 c-bordered fadeInLeft animated"
+        >
+          <img class="img-prev" [src]="previewImage" alt="" />
+        </div>
       </div>
     </div>
     <div class="form-group">
       <label for="images" class="col-md-4 control-label">Imagenes:</label>
       <div class="col-md-6">
-        <input type="file" class="form-control c-square c-theme" id="images" placeholder="Imagenes" />
-        <input type="file" class="form-control c-square c-theme" id="images" placeholder="Imagenes" />
-        <input type="file" class="form-control c-square c-theme" id="images" placeholder="Imagenes" />
+        <!-- formControlName="images" -->
+        <input
+          type="file"
+          class="form-control c-square c-theme"
+          id="images"
+          name="images"
+          placeholder="Imagenes"
+          multiple
+          (change)="loadImages($event)"
+        />
+        <!-- todo: add the possibility to delete a specific image  -->
+        <div *ngIf="previewImages.length > 0">
+          <div
+            *ngFor="let image of previewImages"
+            class="col-md-4 col-sm-6 c-content-media-1 c-bordered fadeInLeft animated"
+          >
+            <img class="img-prev" [src]="image" alt="" />
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-group">
       <label for="brand" class="col-md-4 control-label">Marca:</label>
       <div class="col-md-6">
-        <input type="text" class="form-control c-square c-theme" id="brand" placeholder="Marca" />
+        <input
+          formControlName="brand"
+          type="text"
+          class="form-control c-square c-theme"
+          id="brand"
+          placeholder="Marca"
+        />
       </div>
     </div>
     <div class="form-group">
       <label for="price" class="col-md-4 control-label">Precio:</label>
       <div class="col-md-6">
-        <input type="number" class="form-control c-square c-theme" id="price" placeholder="Precio" />
+        <input
+          formControlName="price"
+          type="number"
+          class="form-control c-square c-theme"
+          id="price"
+          placeholder="Precio"
+        />
       </div>
     </div>
     <div class="form-group">
       <label for="puntaje" class="col-md-4 control-label">Puntaje:</label>
       <div class="col-md-6">
-        <input type="text" class="form-control c-square c-theme" id="puntaje" placeholder="Puntaje" />
+        <input
+          formControlName="rating"
+          type="text"
+          class="form-control c-square c-theme"
+          id="puntaje"
+          placeholder="Puntaje"
+        />
       </div>
     </div>
     <div class="form-group">
       <label for="featured" class="col-md-4 control-label">Destacado:</label>
       <div class="col-md-6">
-        <select name="featured" id="featured">
+        <select
+          formControlName="featured"
+          class="form-control input-lg c-square"
+          name="featured"
+          id="featured"
+        >
           <option selected disabled>Seleccione una opcion</option>
-          <option>Sí</option>
-          <option>No</option>
+          <option value="1">Sí</option>
+          <option value="0">No</option>
         </select>
       </div>
     </div>
     <div class="form-group">
       <label for="category" class="col-md-4 control-label">Categoria:</label>
       <div class="col-md-6">
-        <select name="featured" id="category">
+        <select
+          formControlName="category"
+          class="form-control input-lg c-square"
+          name="category"
+          id="category"
+        >
           <option selected disabled>Seleccione una opcion</option>
-          <option>Categoria 1</option>
-          <option>Categoria 2</option>
+          <option *ngFor="let category of categories" [value]="category?.id">
+            {{ category?.name }}
+          </option>
         </select>
       </div>
     </div>
     <div class="form-group c-margin-t-40">
       <div class="col-sm-offset-4 col-md-8">
         <button type="submit" class="btn c-theme-btn c-btn-square c-btn-uppercase c-btn-bold">
-          Agregar
+          Actualizar
         </button>
       </div>
     </div>

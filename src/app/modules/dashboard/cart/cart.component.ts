@@ -118,27 +118,16 @@ export class CartComponent implements OnInit {
       userId: this.userId,
     };
 
-    Swal.fire({
-      title: 'Verificacion de email',
-      text: 'Asegurese de que su email con cual se registro sea igual que el que va a utilizar para realizar el pago. De esta manera podremos enviarle un correo de confirmacion de pago',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Continuar',
-      cancelButtonText: 'Cancelar',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.orderService.setOrder(order).subscribe({
-          next: (res) => {
-            window.location.href = res.link;
-            this.cartService.clearCart();
-          },
-          error: (err) => {
-            this.toastr.error('Error al crear el pedido', 'ERROR');
-          },
-        });
-      }
+    //todo: add strapi
+
+    this.orderService.setOrder(order).subscribe({
+      next: (res) => {
+        window.location.href = res.link;
+        this.cartService.clearCart();
+      },
+      error: (err) => {
+        this.toastr.error('Error al crear el pedido', 'ERROR');
+      },
     });
   }
 }

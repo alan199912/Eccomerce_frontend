@@ -18,4 +18,14 @@ export class MainImageService {
       })
       .pipe(catchError((error) => throwError(() => error.message)));
   }
+
+  public updateMainImageProduct(product, id: number): Observable<any> {
+    return this.http
+      .put<any>(`${environment.product.mainImage.updateMainImage}/${id}`, product, {
+        headers: {
+          enctype: 'multipart/form-data',
+        },
+      })
+      .pipe(catchError((error) => throwError(() => error.message)));
+  }
 }

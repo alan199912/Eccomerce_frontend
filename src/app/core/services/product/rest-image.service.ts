@@ -19,4 +19,14 @@ export class RestImageService {
       })
       .pipe(catchError((error) => throwError(() => error.message)));
   }
+
+  public updateRestImageProduct(product, id: number): Observable<any> {
+    return this.http
+      .put<any>(`${environment.product.restImage.updateRestImage}/${id}`, product, {
+        headers: {
+          enctype: 'multipart/form-data',
+        },
+      })
+      .pipe(catchError((error) => throwError(() => error.message)));
+  }
 }
