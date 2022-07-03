@@ -59,6 +59,7 @@ export const environment = {
     updateCategory: 'http://localhost:5000/api/v1/categories/updateCategory',
   },
   order: {
+    getOrdersList: 'http://localhost:5000/api/v1/orders/getOrdersList',
     setOrder: 'http://localhost:5000/api/v1/orders/setOrder',
     getOrdersByUserId: 'http://localhost:5000/api/v1/orders/getOrdersByUserId',
   },

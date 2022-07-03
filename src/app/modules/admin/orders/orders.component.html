@@ -1,1 +1,14 @@
-<p>orders works!</p>
+<app-return></app-return>
+
+<app-content-admin *ngIf="orders" title="Ordenes">
+  <app-table-admin
+    *ngIf="!isLoading; else loadingContent"
+    [displayedColumns]="columns"
+    [data]="orders"
+    (EmmitIdItemToDelete)="deleteOrder($event)"
+    (EmmitIdItemToRestore)="restoreOrder($event)"
+  >
+  </app-table-admin>
+
+  <ng-template #loadingContent>Cargando...</ng-template>
+</app-content-admin>

@@ -1,7 +1,6 @@
 import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { OrdersComponent } from './orders/orders.component';
 
 const routes: Routes = [
   { path: '', component: AdminComponent },
@@ -24,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'orders',
-    component: OrdersComponent,
+    loadChildren: () => import('./orders/orders.module').then((m) => m.OrdersModule),
   },
 ];
 

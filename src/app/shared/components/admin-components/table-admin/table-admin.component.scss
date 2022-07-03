@@ -40,8 +40,16 @@
       .mat-column-price,
       .mat-column-countInStock,
       .mat-column-raiting,
-      .mat-column-isFeatured {
+      .mat-column-isFeatured,
+      .mat-column-totalPrice,
+      .mat-column-userId,
+      .mat-column-transactionId,
+      .mat-column-payerId {
         flex: 0 0 15%;
+      }
+
+      .mat-column-orderPaypal {
+        flex: 0 0 40%;
       }
     }
   }
