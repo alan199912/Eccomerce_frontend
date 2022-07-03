@@ -28,4 +28,16 @@ export class OrderService {
       catchError((error) => throwError(() => error.error.message))
     );
   }
+
+  public deleteOrder(id: string): Observable<ResponseOrder> {
+    return this.http
+      .delete<ResponseOrder>(`${environment.order.deleteOrder}/${id}`)
+      .pipe(catchError((error) => throwError(() => error.error.message)));
+  }
+
+  public restoreOrder(id: string): Observable<ResponseOrder> {
+    return this.http
+      .post<ResponseOrder>(`${environment.order.restoreOrder}/${id}`, null)
+      .pipe(catchError((error) => throwError(() => error.error.message)));
+  }
 }

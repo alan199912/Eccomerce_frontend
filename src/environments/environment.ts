@@ -62,6 +62,8 @@ export const environment = {
     getOrdersList: 'http://localhost:5000/api/v1/orders/getOrdersList',
     setOrder: 'http://localhost:5000/api/v1/orders/setOrder',
     getOrdersByUserId: 'http://localhost:5000/api/v1/orders/getOrdersByUserId',
+    deleteOrder: 'http://localhost:5000/api/v1/orders/deleteOrder',
+    restoreOrder: 'http://localhost:5000/api/v1/orders/restoreOrder',
   },
   role: {
     getRolesList: 'http://localhost:5000/api/v1/roles/getRolesList',
