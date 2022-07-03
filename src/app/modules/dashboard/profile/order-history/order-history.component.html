@@ -3,20 +3,25 @@
     <h3 class="c-font-uppercase c-font-bold">Historial de pedidos</h3>
     <div class="c-line-left"></div>
   </div>
-  <div class="row c-margin-b-40" *ngFor="let order of orders">
+  <div
+    class="row c-margin-b-40"
+    [class.divider]="orders.indexOf(order) !== orders.indexOf(orders[orders.length - 1])"
+    *ngFor="let order of orders"
+  >
     <div class="c-content-product-2 c-bg-white">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div class="c-content-overlay">
           <div class="c-bg-img-center c-overlay-object" data-height="height">
             <img
-              style="height: 230px; width: 230px; object-fit: contain"
-              [src]="order.OrderItems[0].Product.MainProductImage.file"
-              alt=""
+              *ngFor="let image of order.OrderItems"
+              class="product-image"
+              [src]="image.Product.MainProductImage.file"
+              alt="Image of product"
             />
           </div>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-6">
         <div class="c-info-list">
           <h3 class="c-title c-font-bold c-font-22 c-font-dark">
             <a

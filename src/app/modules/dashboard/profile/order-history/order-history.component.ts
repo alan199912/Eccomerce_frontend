@@ -1,9 +1,11 @@
-import { mergeMap, catchError, throwError } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { OrderService } from '../../services/order/order.service';
 import { ToastrService } from 'ngx-toastr';
 import { Order } from 'src/app/core/models/order.modules';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { selectFeatureUser } from 'src/app/state/selectors/user.selectors';
+import { User } from 'src/app/core/models/user.models';
 
 @Component({
   selector: 'app-order-history',
@@ -11,39 +13,32 @@ import { Order } from 'src/app/core/models/order.modules';
   styleUrls: ['./order-history.component.scss'],
 })
 export class OrderHistoryComponent implements OnInit {
-  public orders: Order[];
+  public orders: Order[] = [];
+  private user!: User;
 
   constructor(
     private readonly orderService: OrderService,
-    private readonly authService: AuthService,
-    private readonly toastr: ToastrService
+    private readonly toastr: ToastrService,
+    private readonly store: Store<AppState>
   ) {}
 
   ngOnInit(): void {
+    this.getUser();
     this.getOrdersByUserId();
   }
 
   private getOrdersByUserId(): void {
-    this.authService
-      .getIdByToken()
-      .pipe(
-        mergeMap((id: number) => {
-          return this.orderService.getOrdersByUserId(id);
-        }),
-        catchError((error) => throwError(() => this.toastr.warning('Usuario no logueado', 'ERROR')))
-      )
-      .subscribe({
-        next: (res: any) => {
-          this.orders = res.orders;
-          console.log(res.orders);
+    this.orderService.getOrdersByUserId(this.user.id).subscribe({
+      next: (res) => {
+        this.orders = res.orders;
+      },
+      error: (err) => this.toastr.error('Ha ocurrido un error. Intente más tarde', 'ERROR'),
+    });
+  }
 
-          res.orders.forEach((o) => {
-            console.log(o.OrderItems);
-          });
-        },
-        error: (err) => {
-          this.toastr.error('Ha ocurrido un error. Intente más tarde', 'ERROR');
-        },
-      });
+  private getUser(): void {
+    this.store.select(selectFeatureUser).subscribe((user) => {
+      this.user = user;
+    });
   }
 }
