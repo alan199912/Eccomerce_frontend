@@ -16,8 +16,10 @@ export interface Order {
 }
 
 export interface BodySetOrder {
-  orderItems: Product[] | Product;
+  orderItems: Product[];
   userId: number;
+  isCard: boolean;
+  isPaypal: boolean;
 }
 
 export interface ResponseOrder {

@@ -5,10 +5,10 @@ import { Product } from 'src/app/core/models/product.models';
 import { CartService } from 'src/app/core/services/cart/cart.service';
 import { ProductService } from '../../../core/services/product/product.service';
 import { OrderService } from '../services/order/order.service';
-import Swal from 'sweetalert2';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { selectFeatureUser } from 'src/app/state/selectors/user.selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -32,6 +32,7 @@ export class CartComponent implements OnInit {
     private readonly productService: ProductService,
     private readonly orderService: OrderService,
     private readonly toastr: ToastrService,
+    private readonly router: Router,
     private readonly store: Store<AppState>
   ) {}
 
@@ -112,22 +113,23 @@ export class CartComponent implements OnInit {
     this.getCartItems();
   }
 
-  public orderPayment(): void {
+  public goToPayment(): void {
+    //todo: add STRIPE
     const order = {
       orderItems: this.products,
       userId: this.userId,
     };
 
-    //todo: add strapi
-
-    this.orderService.setOrder(order).subscribe({
-      next: (res) => {
-        window.location.href = res.link;
-        this.cartService.clearCart();
-      },
-      error: (err) => {
-        this.toastr.error('Error al crear el pedido', 'ERROR');
-      },
-    });
+    this.orderService.order$.next(order);
+    this.router.navigate(['/dashboard/checkout/form']);
+    // this.orderService.setOrder(order).subscribe({
+    //   next: (res) => {
+    //     window.location.href = res.link;
+    //     this.cartService.clearCart();
+    //   },
+    //   error: (err) => {
+    //     this.toastr.error('Error al crear el pedido', 'ERROR');
+    //   },
+    // });
   }
 }

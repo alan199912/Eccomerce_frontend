@@ -1,13 +1,15 @@
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { BodySetOrder, Order, ResponseOrder } from 'src/app/core/models/order.modules';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrderService {
+  public order$ = new BehaviorSubject<any>(null);
+
   constructor(private readonly http: HttpClient) {}
 
   public setOrder(order: BodySetOrder): Observable<ResponseOrder> {

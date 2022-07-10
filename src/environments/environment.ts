@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  stripe_pk:
+    'pk_test_51LJmZlKx4xNktNIsCEVzX3IrPewO77viEMXNSiPJpzmhFaT2rCSuniKAhID5wg5FgRw8NR9k2EKBWAN9KVAjjALY00KSxDEmZx',
   auth: {
     register: 'http://localhost:5000/api/v1/auth/register',
     login: 'http://localhost:5000/api/v1/auth/login',
